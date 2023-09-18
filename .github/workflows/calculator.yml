@@ -1,0 +1,29 @@
+name: Build and Deploy Angular Calculator App
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Setup Angular
+        run: npm install -g @angular/cli
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Application
+        run: ng build --prod
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
