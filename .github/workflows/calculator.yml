@@ -1,4 +1,4 @@
-name: Build and Deploy Angular Calculator App
+name: Calculator-App
 'on':
   push:
     branches:
